@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="banner">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel ">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/img.jpg' %}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/bg-2.jpg'%}" class="d-block w-100 " alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/bg-3.jpg'%}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--1st card slider start:- Medal Worthy Brands To Bag-->
+<div class="container">
+    <div class=" my-5">
+        <h3 class="fw-bold text-uppercase">Medal Worthy Brands</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="cardslider">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for brand in brand_products %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}"
+                        {% if forloop.first %} class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}">
+                    </button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for brand, products in brand_products.items %}
+                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-md-2">
+                                    <div class="card">
+                                        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ product.brand.name }}</p>
+                                            <p class="card-text">Price: ${{ product.price }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end 1st card slider-->
+<!--Shop by Categories start-->
+<div class="container">
+    <div class=" my-5">
+        <h3 class="fw-bold text-uppercase">Grand Category of Cloths</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="cardslider">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for category in category_products %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}"
+                        {% if forloop.first %} class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}">
+                    </button>
+                {% endfor %}
+                
+            </div>
+            <div class="carousel-inner">
+                {% for category, products in category_products.items %}
+                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-md-2">
+                                    <div class="card">
+                                        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ product.category.name }}</p>
+                                            <p class="card-text">Price: ${{ product.price }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+                        
+
+        </div>
+    </div>
+
+</div>
+<!--Shop by Categories end-->
+
+{% endblock %}

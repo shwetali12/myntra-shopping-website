@@ -1,0 +1,39 @@
+.text-pink{
+    color: rgb(218, 24, 150);
+}
+
+.banner .carousel-inner{
+    margin-top: 130px;
+}
+
+.banner .carousel-inner img{
+ height: 450px;   
+}
+
+.cardslider .carousel-inner img{
+    height: 250px;
+}
+
+.card .card-img-overlay {
+    padding: 0.5rem; /* Adjust this value to decrease or increase the padding */
+    margin: 0.5rem; /* Adjust this value to decrease or increase the margin */
+}
+
+/* top_wear .html*/
+
+
+.hidden{
+    display: none;
+}
+
+.hover1:hover .info{
+    display: none;
+    }
+
+.hover1:hover .info2{
+display: block;
+}
+
+.navbar-nav .dropdown-menu a{
+    background-color: rgb(218, 24, 150);
+}

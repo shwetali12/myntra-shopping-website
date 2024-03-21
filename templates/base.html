@@ -1,0 +1,180 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light  shadow-sm fixed-top mb-5">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">Myntra</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link active fw-bold" href="{% url 'men' %}" id="navbarDropdown" role="button"
+                            data-bs-toggle="" aria-expanded="false">
+                            MEN
+                        </a>
+
+
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link active fw-bold " href="{% url 'women' %}" id="navbarDropdown" role="button"
+                            data-bs-toggle="" aria-expanded="false">
+                            WOMEN
+                        </a>
+
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link active fw-bold " href="{% url 'kids' %}" id="navbarDropdown" role="button"
+                            data-bs-toggle="" aria-expanded="false">
+                            KIDS
+                        </a>
+
+                    </li>
+
+
+
+                    <li class="nav-item ">
+                        <form action="{% url 'product_search' %}" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q"
+                                    placeholder="Search for Products, Brands, and More" aria-label="Search">
+                                <button type="submit" class="btn btn-primary"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
+
+
+                    </li>
+                </ul>
+                <div class="">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown mx-4">
+                            <a class="nav-link text-center text-dark" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user text-muted" aria-hidden="true"></i> <br>Profile
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                                {% if user.is_authenticated %}
+                                    <a class="dropdown-item" href="{% url 'order' %}">Orders</a>
+                                    <a class="dropdown-item" href="{% url 'wishlist' %}">Wishlist</a>
+                                    <a class="dropdown-item" href="#">{{ user }}</a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+                                    <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                                {% endif %}
+                                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                        <li class="nav-item  mx-4">
+                            <a class="nav-link text-center text-dark" href="{% url 'wishlist' %}" role="button"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-regular fa-heart text-muted"></i><br>
+                                Wishlist
+                            </a>
+
+                        </li>
+                        <li class="nav-item  mx-4">
+                            <a class="nav-link  text-center text-dark" href="{% url 'cart' %}" role="button"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-shopping-bag text-muted" aria-hidden="true"></i><br>
+                                Bag
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <!--Footer start-->
+    <footer class="bd-footer py-5 mt-5 bg-light">
+        <div class="container py-5">
+            <div class="row">
+
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Online Shopping</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'men' %}" class="text-muted text-decoration-none">Men</a></li>
+                        <li class="mb-2"><a href="{% url 'women' %}" class="text-muted text-decoration-none">Women</a></li>
+                        <li class="mb-2"><a href="{% url 'kids' %}" class="text-muted text-decoration-none">Kids</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Customer Policies</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="" class="text-muted text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="" class="text-muted text-decoration-none">Faq</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Customer</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'order' %}" class="text-muted text-decoration-none">Order</a></li>
+                        <li class="mb-2"><a href="{% url 'cart' %}" class="text-muted text-decoration-none">Cart</a></li>
+                       
+                    </ul>
+                   
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Community</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://github.com/twbs/bootstrap/issues" class="text-muted text-decoration-none">Issues</a></li>
+                        <li class="mb-2"><a href="https://github.com/twbs/bootstrap/discussions" class="text-muted text-decoration-none">Discussions</a></li>
+                        <li class="mb-2"><a href="https://github.com/sponsors/twbs" class="text-muted text-decoration-none">Corporate sponsors</a></li>
+                        <li class="mb-2"><a href="https://opencollective.com/bootstrap" class="text-muted text-decoration-none">Open Collective</a></li>
+                        <li class="mb-2"><a href="https://stackoverflow.com/questions/tagged/bootstrap-5" class="text-muted text-decoration-none">Stack
+                                Overflow</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--footer end-->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

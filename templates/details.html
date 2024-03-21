@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+
+    <div class="details" style="margin-top: 160px;">
+        <div class="row">
+            <!--First column-->
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ product.image.url }}" alt="{{i.name }}" class="card-img-top"
+                            style="height: 400px;">
+
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ product.image.url }}" alt="{{i.name }}" class="card-img-top"
+                            style="height: 400px;">
+
+                    </div>
+
+
+                </div>
+            </div>
+            <!--Second column-->
+            <div class="col-md-4">
+                <h2>{{product.name }}</h2>
+                <h4 class="text-muted">{{product.description }}</h4>
+                <hr>
+                <div class="d-flex">
+                    <h4 class="fw-bold">RS:{{ product.price }}</h4>
+                    <h4 class="text-muted mx-2 text-decoration-line-through">MRP 8888</h4>
+                    <h4 class="text-warning">(20 % off)</h4>
+                </div>
+                <p class="text-success fw-bold">inclusive of all taxes</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'add_to_cart' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger  p-2">
+                                <i class="fa-regular fa-heart mx-1 " type="submit"></i>Add to Cart</button>
+                        </form>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary mt-2">Login to Order</a>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-md-6">
+                        {% if user.is_authenticated %}
+
+                        <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-warning  p-2">
+                                <i class="fa-regular fa-heart mx-1 " type="submit"></i>WISHLIST</button>
+                        </form>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-warning mt-2">Login to Add WISHLIST</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <hr>
+
+                <!--dilivery option-->
+                <div>
+                    <p class="fw-bold">Delivery Options<i class="fa-solid fa-truck mx-2"></i></p>
+                    <input type="text" placeholder="Enter Pincode"><br>
+                    <small class="text-muted">Please enter PIN code to check delivery time & Pay on Delivery
+                        Availability</small>
+                    <p class="mt-4">100% Original Products<br>
+                        Pay on delivery might be available<br>
+                        Easy 14 days returns and exchanges<br>
+                        Try & Buy might be available</p>
+                </div>
+                <!--Product discription-->
+
+
+
+                <div>
+                    <h4 class="fw-bold">Product Details </h4>
+                    <p>{{product.discription}}</p>
+                    <h5 class="fw-bold">Size & Fit</h5>
+                    <p>Slim fit</p>
+                    <p>The model (height 6') is wearing a size 40</p>
+                    <h5 class="fw-bold">Material & Care</h5>
+                    <p>100% cotton<br>
+                        Machine-wash</p>
+                    <h5 class="fw-bold">Specifications</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <small class="text-muted">Sleeves</small>
+                            <p>Long Sleeves</p>
+                            <hr>
+                            <small class="text-muted">Sleeves</small>
+                            <p>Long Sleeves</p>
+                            <hr>
+                            <small class="text-muted">Sleeves</small>
+                            <p>Long Sleeves</p>
+                            <hr>
+
+                        </div>
+                        <div class="col-md-6">
+                            <small class="text-muted">Sleeves</small>
+                            <p>Long Sleeves</p>
+                            <hr>
+                            <small class="text-muted">Sleeves</small>
+                            <p>Long Sleeves</p>
+                            <hr>
+                            <small class="text-muted">Sleeves</small>
+                            <p>Long Sleeves</p>
+                            <hr>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

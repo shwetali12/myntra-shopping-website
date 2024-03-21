@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="margin-top: 130px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Place Order</h2>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        
+                      
+                      <div class="mb-3">
+                          <label for="id_address" class="form-label">Address:</label>
+                          <input type="text" id="id_address" name="address" class="form-control" value="{{ form.address.value }}">
+                      </div>
+                      
+                      <div class="mb-3">
+                          <label for="id_phone" class="form-label">Phone:</label>
+                          <input type="tel" id="id_phone_number" name="phone_number" class="form-control" value="{{ form.phone_number.value }}">
+                      </div>
+                      <div class="mb-3">
+                        <label for="id_phone" class="form-label">Quantity</label>
+                        <input type="tel" id="id_quantity" name="quantity" class="form-control" value="{{ form.quantity.value }}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="id_country" class="form-label">Country</label>
+                      <input type="tel" id="id_phone" name="country" class="form-control" value="{{ form.country.value }}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="id_phone" class="form-label">State</label>
+                    <input type="tel" id="id_phone" name="state" class="form-control" value="{{ form.state.value }}">
+                </div>
+                  <div class="mb-3">
+                    <label for="id_phone" class="form-label">zipcode</label>
+                    <input type="tel" id="id_phone" name="zipcode" class="form-control" value="{{ form.zipcode.value }}">
+                </div>
+                      
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

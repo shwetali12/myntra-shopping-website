@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid px-0 mx-3">
+    <div class="" style="margin-top: 130px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'men' %}" class=" text-decoration-none">Men</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href=""
+                        class=" text-decoration-none">Top-Wear</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'top_wear' %}"
+                            class=" text-decoration-none">Shirt</a></li>
+            </ol>
+        </nav>
+    </div>
+
+    <p class="fw-bold">Men Top-Wear <span class="text-muted">- 98778</span> </p>
+    <div class="row">
+        <div class="col-md-2 mx-3">
+            <P class="fw-bold">FILTERS</P>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <button class="btn dropdown-toggle btn-sm rounded-pill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Size
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="?{% if request.GET.categories %}categories={{ request.GET.categories }}&brand={{ request.GET.brand }}&{% endif %}size=M">M</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?{% if request.GET.categories %}categories={{ request.GET.categories }}&brand={{ request.GET.brand }}&{% endif %}size=XL">XL</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?{% if request.GET.categories %}categories={{ request.GET.categories }}&brand={{ request.GET.brand }}&{% endif %}size=XXL">XXL</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?{% if request.GET.categories %}categories={{ request.GET.categories }}&brand={{ request.GET.brand }}&{% endif %}size=S">S</a>
+                    </li>
+                </ul>
+            </div>
+            
+            
+
+        </div>
+        <div class="col-md-2 ms-auto">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    sort by: Recommended
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Recommended</a></li>
+                    <li><a class="dropdown-item" href="#">What's New</a></li>
+                    <li><a class="dropdown-item" href="#">Popularity</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid px-0">
+    <div class="row border-top">
+        <div class="col-md-2 mt-2  border-end">
+            <div>
+                <h6 class="fw-bold">Categories</h6>
+                <div class="list-group list-group-flush">
+                    {% for i in categories|slice:":2" %}
+                    <label class="list-group-item border-0">
+                        <!--input class="form-check-input me-1" type="checkbox" value="{{ i.id }}"-->
+                        <a href="{% url 'top_wear' %}?categories={{ i.id }}" class="list-group-item list-group-item-action">
+                            {{i.name }}</a>
+                
+                    </label>
+                    {% endfor %}
+                </div>
+                
+
+            </div>
+            <div>
+                <h6 class="fw-bold">Brands</h6>
+                <div class="list-group list-group-flush">
+                    {% for i in brand %}
+                    <label class="list-group-item border-0">
+                        <!--input class="form-check-input me-1" type="checkbox" value=""-->
+                        <a href="{% url 'top_wear' %}?{% if request.GET.categories %}categories={{ request.GET.categories }}&{% endif %}brand={{ i.id }}"
+                            class="list-group-item list-group-item-action">{{ i.name }}</a>
+
+                    </label>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div>
+                <h6 class="fw-bold">Price</h6>
+                <div class="list-group list-group-flush">
+                    <label class="list-group-item border-0">
+                        <a href="{% url 'top_wear' %}?{% if request.GET.categories %}categories={{ request.GET.categories }}&{% endif %}brand={{ i.id }}{% if request.GET.size %}&size={{ i.size }}{% endif %}&price=under-500" class="list-group-item list-group-item-action">Under 500 Rs</a>
+                    </label>
+                    <label class="list-group-item border-0">
+                        <a href="{% url 'top_wear' %}?{% if request.GET.Categories %}categories={{ request.GET.categories}}&{% endif %}brand={{i.id }}{% if request.GET.size %}&size={{ i.size }}{% endif %}&price=500-1000" class="list-group-item list-group-item-action">500-1000 Rs</a>
+                    </label>
+                    <label class="list-group-item border-0">
+                        <a href="{% url 'top_wear' %}?{% if request.GET.categories %}categories={{ request.GET.categories }}&{% endif %}brand={{ i.id }}{% if request.GET.size %}&size={{ i.size }}{% endif %}&price=1000-2000" class="list-group-item list-group-item-action">1000-2000 Rs</a>
+                    </label>
+                    <label class="list-group-item border-0">
+                        <a href="{% url 'top_wear' %}?{% if request.GET.categories %}categories={{ request.GET.categories}}&{% endif %}brand={{ i.id }}{% if request.GET.size %}&size={{ i.size }}{% endif %}&price=2000-5000" class="list-group-item list-group-item-action">2000-5000 Rs</a>
+                    </label>
+                    <label class="list-group-item border-0">
+                        <a href="{% url 'top_wear' %}?{% if request.GET.categories %}categories={{ request.GET.categories }}&{% endif %}brand={{ i.id }}{% if request.GET.size %}&size={{ i.size }}{% endif %}&price=5000" class="list-group-item list-group-item-action">5000 & Above Rs</a>
+                    </label>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-10 mt-3">
+
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <a class="" href="{% url 'details' product.id %}"><img src="{{ product.image.url }}"  class="card-img-top" alt="..." style="height: 250px;"></a>
+                        <div class="card-body hover1">
+                            <div class="info">
+                                <h5>{{product.name}}</h5>
+                                <small class="text-muted">{{ product.description }}</small>
+
+                            </div>
+                            <div class="info2 hidden">
+                                <button class="btn btn-light p-2"><i
+                                        class="fa-regular fa-heart mx-1 "></i>WISHLIST</button>
+                                <small class="text-muted">{{product.size}}</small>
+                            </div>
+                            <div class="d-flex">
+                                <p>RS:{{ i.price }}</p>
+                                <small class="text-muted mx-2 text-decoration-line-through">RS 8888</small>
+                                <p class="text-warning">(20 % off)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
