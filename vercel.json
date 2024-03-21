@@ -1,0 +1,15 @@
+{
+    "builds":[{
+        "src":"myntra/wsgi.py",
+        "use":"@vercel/python",
+        "config":{"maxLamdaSize":"15mb","runtime":"python3.11.4"}
+    }
+
+    ],
+    "routes":[
+        {
+            "src":"/(.*)",
+            "dest":"myntra/wsgi.py"
+        }
+    ]
+}
