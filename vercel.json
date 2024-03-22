@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "version":2,
     "builds":[
         {
@@ -12,22 +11,9 @@
             "use":"@vercel/static-build",
             "dest":"/static/$1"
         },
-=======
-    "builds": [
->>>>>>> 6e62d7c3118a1914d66e745aab477c265dbd6eb7
         {
-            "src": "myntra/wsgi.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.9"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "myntra/wsgi.py"
+            "src":"/(.*)",
+            "dest":"myntra/wsgi.py"
         }
     ]
 }
